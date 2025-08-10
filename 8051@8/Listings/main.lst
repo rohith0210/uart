@@ -1,0 +1,97 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              05/21/2025 14:18:29 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TA
+                    -BS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*#include <reg51.h>
+   2          
+   3          void UART_Init() {
+   4              SCON = 0x50;  // 8-bit UART mode, REN enabled
+   5              TMOD = 0x20;  // Timer1 Mode2
+   6              TH1 = 0xFD;   // 9600 baud rate
+   7              TR1 = 1;      // Start Timer1
+   8          }
+   9          
+  10          void UART_Tx(char ch) {
+  11              SBUF = ch;          // Load data to transmit
+  12              while (TI == 0);    // Wait for transmission to complete
+  13              TI = 0;             // Clear TI flag
+  14          }
+  15          
+  16          void main() {
+  17              int i;              // ? Declare here
+  18              UART_Init();
+  19              
+  20              while (1) {
+  21                  UART_Tx('H');
+  22                  UART_Tx('i');
+  23                  UART_Tx('\n');
+  24                  UART_Tx('\r');
+  25                  
+  26                  for (i = 0; i < 30000; i++);  // crude delay loop
+  27              }
+  28          }
+  29          
+  30          */
+  31          #include <reg51.h>
+  32          
+  33          void UART_Init()
+  34          {
+  35   1          TMOD = 0x20;       // Timer1 Mode2 (8-bit auto-reload)
+  36   1          TH1 = 0xFD;        // Baud rate 9600 for 11.0592MHz crystal
+  37   1          SCON = 0x50;       // Serial mode 1, 8-bit data, 1 stop bit, REN enabled
+  38   1          TR1 = 1;           // Start Timer 1
+  39   1      }
+  40          
+  41          void UART_TxChar(char ch)
+  42          {
+  43   1          SBUF = ch;         // Load character into buffer
+  44   1          while (TI == 0);   // Wait until transmission complete
+  45   1          TI = 0;            // Clear TI flag
+  46   1      }
+  47          
+  48          char UART_RxChar()
+  49          {
+  50   1          while (RI == 0);   // Wait for reception to complete
+  51   1          RI = 0;            // Clear RI flag
+  52   1          return SBUF;       // Read received char from buffer
+  53   1      }
+  54          
+C51 COMPILER V9.60.7.0   MAIN                                                              05/21/2025 14:18:29 PAGE 2   
+
+  55          void main()
+  56          {
+  57   1         
+  58   1          char received;
+  59   1          UART_Init();       // Initialize UART
+  60   1      
+  61   1          UART_TxChar('H');  // Send H
+  62   1          UART_TxChar('i');  // Send i
+  63   1          while (1)
+  64   1          {
+  65   2              received = UART_RxChar();   // Wait and read a char
+  66   2              UART_TxChar(received);      // Echo it back
+  67   2            
+  68   2          }
+  69   1        
+  70   1      }
+  71          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     49    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

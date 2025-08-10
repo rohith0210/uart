@@ -1,0 +1,161 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    07/01/2025  14:10:51  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+D:\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\UART_plus_LED_Toggle_Code PRINT (.\Listings\UART_plus_LED_Toggle_Cod
+>> e.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\UART_plus_LED_Toggle_Code (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     007EH     UNIT         ?CO?MAIN
+            CODE    087EH     0043H     UNIT         ?PR?MAIN?MAIN
+            CODE    08C1H     002DH     UNIT         ?C?LIB_CODE
+            CODE    08EEH     0024H     UNIT         ?PR?_UART_TXSTRING?MAIN
+            CODE    0912H     000CH     UNIT         ?PR?UART_INIT?MAIN
+            CODE    091EH     000CH     UNIT         ?C_C51STARTUP
+            CODE    092AH     0008H     UNIT         ?PR?_UART_TX?MAIN
+            CODE    0932H     0008H     UNIT         ?PR?UART_RX?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\UART_plus_LED_Toggle_Code (MAIN)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                   -----    -----
+  +--> ?PR?UART_INIT?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_UART_TXSTRING?MAIN
+  +--> ?PR?UART_RX?MAIN
+
+?PR?_UART_TXSTRING?MAIN         0008H    0003H
+  +--> ?PR?_UART_TX?MAIN
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/01/2025  14:10:51  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\UART_plus_LED_Toggle_Code (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:087EH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  C:0912H         PUBLIC        UART_Init
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:008DH         PUBLIC        TH1
+  B:0090H.0       PUBLIC        LED
+  B:0088H.6       PUBLIC        TR1
+  C:08EEH         PUBLIC        _UART_TxString
+  C:0932H         PUBLIC        UART_Rx
+  C:092AH         PUBLIC        _UART_Tx
+  -------         PROC          UART_INIT
+  C:0912H         LINE#         7
+  C:0912H         LINE#         8
+  C:0915H         LINE#         9
+  C:0918H         LINE#         10
+  C:091BH         LINE#         11
+  C:091DH         LINE#         12
+  -------         ENDPROC       UART_INIT
+  -------         PROC          _UART_TX
+  D:0007H         SYMBOL        c
+  C:092AH         LINE#         15
+  C:092AH         LINE#         16
+  C:092CH         LINE#         17
+  C:092FH         LINE#         18
+  C:0931H         LINE#         19
+  -------         ENDPROC       _UART_TX
+  -------         PROC          UART_RX
+  C:0932H         LINE#         22
+  C:0932H         LINE#         23
+  C:0935H         LINE#         24
+  C:0937H         LINE#         25
+  C:0939H         LINE#         26
+  -------         ENDPROC       UART_RX
+  -------         PROC          _UART_TXSTRING
+  D:0008H         SYMBOL        s
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:08EEH         LINE#         34
+  C:08F4H         LINE#         35
+  C:08F7H         LINE#         36
+  C:0907H         LINE#         37
+  C:090AH         LINE#         38
+  C:090FH         LINE#         39
+  C:0911H         LINE#         40
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/01/2025  14:10:51  PAGE 3
+
+
+  -------         ENDPROC       _UART_TXSTRING
+  -------         PROC          MAIN
+  -------         DO            
+  D:0006H         SYMBOL        cmd
+  -------         ENDDO         
+  C:087EH         LINE#         42
+  C:087EH         LINE#         45
+  C:0880H         LINE#         46
+  C:0883H         LINE#         48
+  C:088CH         LINE#         49
+  C:0894H         LINE#         51
+  C:0894H         LINE#         52
+  C:0899H         LINE#         54
+  C:089CH         LINE#         55
+  C:089EH         LINE#         56
+  C:08A4H         LINE#         57
+  C:08A6H         LINE#         58
+  C:08A9H         LINE#         59
+  C:08ABH         LINE#         60
+  C:08B4H         LINE#         61
+  C:08B6H         LINE#         62
+  C:08B6H         LINE#         63
+  C:08BFH         LINE#         64
+  C:08BFH         LINE#         65
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDOPTR
+  C:08C1H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0101H BYTE (12%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=317
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
